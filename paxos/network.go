@@ -1,5 +1,10 @@
 package paxos
 
+import (
+	"log"
+	"time"
+)
+
 type Network struct {
 	recvQueue map[int]chan message
 }
@@ -21,6 +26,25 @@ func (n *Network) GetNodeNetwork(id int) NodeNetwork {
 	return NodeNetwork{id: id, net: n}
 }
 
-func (n *Network) sendTo(m message) {
+func (n *Network) SendTo(m message) {
+	log.Print("Send msg from: ", m.from, " send to ", m.to, " val: ", m.val, " typ: ", m.typ)
+	n.recvQueue[m.to] <- m
+}
 
+func (n *NetWork) RecvFrom(id *int) *message {
+	select {
+	case retMsg := <-n.recvQueue[id]:
+		log.Println("Recev msg from: ", retMsg.from, " send to ", retMsg.to, " val: ", retMsg.val, " typ: ", retMsg.typ)
+		return &retMsg
+	case <-time.After(time.Second):
+		return nil
+	}
+}
+
+func (n *NodeNetwork) send(m message) {
+	n.net.SendTo(m)
+}
+
+func (n *NodeNetwork) recev() *message {
+	return n.net.RecvFrom(n.id)
 }
