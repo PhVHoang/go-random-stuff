@@ -73,6 +73,9 @@ func removeHiddenFiles(files []string) []string {
 
 func main() {
   path := "../"
+  if len(os.Args) > 0 {
+    path = os.Args[1]
+  }
   path, err := filepath.Abs(path)
   if err != nil {
     log.Fatalf("absolute %s: %v", path, err)
