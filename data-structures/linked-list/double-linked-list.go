@@ -68,7 +68,7 @@ func (ll *DoubleLinkedList) deleteAtEnd() int{
   return retval
 }
 
-func (ll *DoubleLinkedList) count() int{
+func (ll *DoubleLinkedList) count() int {
   var ctr int = 0
   for cur := ll.head; cur.next != nil; cur = cur.next{
     ctr += 1
@@ -76,7 +76,7 @@ func (ll *DoubleLinkedList) count() int{
   return ctr
 }
 
-func (ll *DoubleLinkedList) reverse(){
+func (ll *DoubleLinkedList) reverse() {
   var prev, next *Node
   cur := ll.head
   for cur != nil {
@@ -88,6 +88,20 @@ func (ll *DoubleLinkedList) reverse(){
   }
   ll.head = prev
 }
+
+func (ll *DoubleLinkedList) displayReverse() {
+  if ll.head == nil {
+    return
+  }
+  var cur *Node
+  for cur = ll.head; cur.next != nil; cur = cur.next {
+  }
+  for ; cur != nil; cur = cur.prev {
+    fmt.Println(cur.val, " ")
+  }
+  fmt.Println("\n")
+}
+
 
 func main() {
 
