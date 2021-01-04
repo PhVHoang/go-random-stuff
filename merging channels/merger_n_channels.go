@@ -22,18 +22,17 @@ func mergeTwoChannels(a, b <-chan int) <-chan int {
 	c := make(chan int)
 	go func() {
 		defer close(c)
-		adone, bdone := false, false
-		for !adone || !bdone {
+		for a != nil || b != nil {
 			select {
 			case v, ok := <-a:
 				if !ok {
-					adone = true
+					a = nil
 					continue
 				}
 				c <- v
 			case v, ok := <-b:
 				if !ok {
-					bdone = true
+					b = nil
 					continue
 				}
 				c <- v
