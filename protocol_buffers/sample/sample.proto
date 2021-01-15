@@ -1,5 +1,5 @@
 syntax = "proto3";
-package todo;
+package sample;
 
 message Task {
     string text = 1;
