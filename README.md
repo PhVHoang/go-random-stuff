@@ -1,3 +1,3 @@
-# go-random-stuffs
+# go-random-stuff
 
-Random stuffs with Go
+Random with Go
