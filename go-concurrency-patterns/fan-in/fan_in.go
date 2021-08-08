@@ -1,8 +1,10 @@
 package main
 
-import ( "fmt"
-		  "math/rand"
-		  "time")
+import ( 
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func updatePosition(name string) <-chan string { 
 	positionChannel := make(chan string)
